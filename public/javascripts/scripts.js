@@ -5,6 +5,7 @@ const BLACK_COLOR = "rgb(0,0,0)";
 
 function getChartData(players, qualifyingOffer) {
   let datasets = [];
+  //add group for players with salaries in qualifying group
   const qualifyingGroup = {
     label: "Qualifying Group",
     borderColor: MAROON_COLOR,
@@ -14,6 +15,7 @@ function getChartData(players, qualifyingOffer) {
       .rgbString(),
     data: []
   };
+  //add group for other players
   const nonQualifyingGroup = {
     label: "Non-Qualifying Group",
     borderColor: POWDERBLUE_COLOR,
@@ -26,21 +28,23 @@ function getChartData(players, qualifyingOffer) {
   datasets.push(qualifyingGroup);
   datasets.push(nonQualifyingGroup);
 
+  //loop through players and add to respective group
   let xAxisLabels = [];
-
   players.forEach((player, index) => {
     //changed letters
+    const firstLetter = player.name.charAt(0).toUpperCase();
     const sameLetter =
       index > 0 &&
-      players[index - 1].name.charAt(0).toUpperCase() ===
-        player.name.charAt(0).toUpperCase();
+      players[index - 1].name.charAt(0).toUpperCase() === firstLetter;
 
-    let data = {
+    //create data point
+    const data = {
       label: player.name + ": " + formatCurrency(player.salary),
-      x: player.name.charAt(0).toUpperCase() + (sameLetter ? index : ""),
+      x: firstLetter + (sameLetter ? index : ""),
       y: player.salary
     };
 
+    //add to correct group
     if (player.qualifyingGroup) {
       qualifyingGroup.data.push(data);
     } else {
@@ -49,6 +53,8 @@ function getChartData(players, qualifyingOffer) {
 
     xAxisLabels.push(data.x);
   });
+
+  //add qualifying offer section
   const qoLabel = "Qualifying Offer: " + formatCurrency(qualifyingOffer);
   const line = {
     type: "line",
@@ -74,7 +80,7 @@ function getChartData(players, qualifyingOffer) {
     ]
   };
   datasets.push(line);
-  console.log(xAxisLabels);
+
   return {
     datasets,
     xAxisLabels
@@ -121,6 +127,6 @@ function formatCurrency(
           : ""))
     );
   } catch (e) {
-    console.log(e);
+    return;
   }
 }
