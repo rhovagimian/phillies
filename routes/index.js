@@ -61,6 +61,7 @@ module.exports = app => {
     const qualifyingOffer = totalSalary / QUALIFYING_GROUP;
 
     res.render("index", {
+      title: "Phillies Baseball R&D Questionnaire",
       year: YEAR_OF_SEASON,
       playerData: JSON.stringify(playerData),
       qualifyingOffer,
