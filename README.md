@@ -13,6 +13,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 Clone or unzip the repo
+Navigate to directory
 
 ```
 npm install
@@ -24,6 +25,7 @@ To run the application
 
 ```
 npm start
+Navigate to http://localhost:3000/
 ```
 
 ## Live demo
