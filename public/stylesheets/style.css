@@ -1,0 +1,14 @@
+.chart-container {
+  position: relative;
+  margin: auto;
+  height: 80vh;
+  width: 75vw;
+}
+
+#salaries-table tr.qualified-group td {
+  color: #6f263d;
+}
+
+#salaries-table tr.qualified-group.non td {
+  color: #6bace4;
+}

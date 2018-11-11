@@ -1,0 +1,68 @@
+<div class="container">
+    <h1>MLB Salaries for {{year}}</h1>
+    <div class="chart-container">
+        <canvas id="salaryChart"></canvas>
+    </div>
+    <div class="accordion" id="dataset">
+        <div class="card">
+            <div class="card-header" id="fullset">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#salaryTable"
+                        aria-expanded="true" aria-controls="salaryTable">
+                        Salary Data
+                    </button>
+                </h5>
+            </div>
+
+            <div id="salaryTable" class="collapse" aria-labelledby="fullset" data-parent="#dataset">
+                <div class="card-body">
+                    {{{salaryTable}}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let ctx = document.getElementById("salaryChart").getContext('2d');
+    let chartData = getChartData({{{ playerData }}}, "{{ qualifyingOffer }}");
+
+    let scatterChart = Chart.Scatter(ctx, {
+        data: {
+            datasets: chartData.datasets
+        },
+        options: {
+            tooltips: {
+                callbacks: {
+                    label: getTooltipLabel
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        callback: formatYAxis
+                    }
+                }],
+                gridLines: {
+                    tickMarkLength: 100
+                },
+                xAxes: [{
+                    type: "category",
+                    labels: chartData.xAxisLabels,
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 0,
+                        callback: function (value, index, values) {
+                            return (value.length === 1) ? value : undefined;
+                        }
+                    },
+                    fontStyle: "normal",
+                    fontSize: 10,
+                    position: "bottom"
+                }]
+            }
+        }
+    });
+
+</script>
+</div>
