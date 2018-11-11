@@ -32,6 +32,19 @@
             datasets: chartData.datasets
         },
         options: {
+            //https://stackoverflow.com/questions/45149062/chart-js-how-to-show-cursor-pointer-for-labels-legends-in-line-chart
+            legend: {
+                onHover: function (e) {
+                    e.target.style.cursor = 'pointer';
+                }
+            },
+            hover: {
+                onHover: function (e) {
+                    var point = this.getElementAtEvent(e);
+                    if (point.length) e.target.style.cursor = 'pointer';
+                    else e.target.style.cursor = 'default';
+                }
+            },
             tooltips: {
                 callbacks: {
                     label: getTooltipLabel
