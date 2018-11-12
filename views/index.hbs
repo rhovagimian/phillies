@@ -53,13 +53,17 @@
             },
             tooltips: {
                 callbacks: {
-                    label: getTooltipLabel
+                    label: (tooltipItem, data) => {
+                        return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].label;
+                    }
                 }
             },
             scales: {
                 yAxes: [{
                     ticks: {
-                        callback: formatYAxis
+                        callback: (value, index, values) => {
+                            return formatCurrency(value, 0);
+                        }
                     }
                 }],
                 gridLines: {

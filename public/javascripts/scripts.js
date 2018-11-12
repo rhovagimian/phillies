@@ -1,11 +1,3 @@
-function getTooltipLabel(tooltipItem, data) {
-  return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].label;
-}
-
-function formatYAxis(value, index, values) {
-  return formatCurrency(value, 0);
-}
-
 //https://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-dollars-currency-string-in-javascript
 function formatCurrency(
   amount,
