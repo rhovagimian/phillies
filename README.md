@@ -40,4 +40,4 @@ https://secret-stream-19108.herokuapp.com/
 
 ## Authors
 
-- **Raffi Hovagimian** (https://github.com/rhovagimian)
+- **Raffi Hovagimian** (https://www.linkedin.com/in/rhovagimian/)
