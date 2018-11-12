@@ -25,7 +25,13 @@
 
 <script>
     let ctx = document.getElementById("salaryChart").getContext('2d');
-    let chartData = getChartData({{{ playerData }}}, "{{ qualifyingOffer }}");
+    let chartData = {{{ chartData }}};
+    for (var i = 0; i < chartData.datasets.length; i++) {
+        chartData.datasets[i].backgroundColor = Chart.helpers
+            .color(chartData.datasets[i].borderColor)
+            .alpha(0.2)
+            .rgbString();
+    }
 
     let scatterChart = Chart.Scatter(ctx, {
         data: {
